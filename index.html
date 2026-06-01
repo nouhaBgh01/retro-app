@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rétro Sprint 5 — Start / Stop / Continue</title>
+    <style>
+        :root {
+            --bg: #0f1220;
+            --card: #171b2d;
+            --card-soft: #1f2540;
+            --text: #e7ebfa;
+            --muted: #9ea7cb;
+            --accent: #8b5cf6;
+            --accent-2: #22d3ee;
+            --border: rgba(255,255,255,.10);
+            --start: #86efac;
+            --stop: #fca5a5;
+            --continue: #93c5fd;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: Inter, Segoe UI, Arial, sans-serif;
+            background: radial-gradient(circle at top right, rgba(139,92,246,.20), transparent 35%), var(--bg);
+            color: var(--text);
+        }
+        .container { max-width: 1320px; margin: 0 auto; padding: 22px; }
+        .hero {
+            background: linear-gradient(140deg, rgba(139,92,246,.24), rgba(34,211,238,.12));
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 14px;
+        }
+        .hero h1 { margin: 0 0 8px; font-size: 2rem; }
+        .hero p { margin: 0; color: var(--muted); }
+
+        .toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+        .toolbar button {
+            border: 1px solid var(--border);
+            color: var(--text);
+            background: var(--card);
+            border-radius: 999px;
+            padding: 8px 14px;
+            cursor: pointer;
+            transition: all .2s;
+            font-size: .9rem;
+        }
+        .toolbar button:hover { border-color: var(--accent); }
+        .toolbar button.active { background: var(--accent); border-color: transparent; }
+
+        .section { display: none; animation: fade .22s ease-in-out; }
+        .section.active { display: block; }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        h2 { margin: 0 0 10px; font-size: 1.2rem; }
+        h3 { margin: 14px 0 10px; font-size: 1rem; color: var(--accent-2); }
+        h4 { margin: 0 0 8px; font-size: .95rem; }
+
+        .postit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .postit-col {
+            background: #12162a;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+            min-height: 350px;
+        }
+        .postit-col-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+            color: var(--text);
+        }
+        .postit-stack { display: grid; gap: 10px; }
+        .postit {
+            min-height: 68px;
+            border-radius: 10px;
+            padding: 10px;
+            color: #111827;
+            font-weight: 600;
+            font-size: .88rem;
+            outline: none;
+            box-shadow: 0 8px 18px rgba(0,0,0,.25);
+            cursor: text;
+        }
+        .postit:focus { box-shadow: 0 0 0 2px rgba(255,255,255,.65); }
+
+        .start-color { background: var(--start); }
+        .stop-color { background: var(--stop); }
+        .continue-color { background: var(--continue); }
+        .idea-color { background: #fde68a; }
+
+        .hint { color: var(--muted); font-size: .9rem; margin: 8px 0 0 0; }
+
+        .dice {
+            background: var(--card-soft);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all .2s;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .dice:hover { transform: scale(1.05); border-color: var(--accent-2); }
+        .dice.selected { border-color: var(--accent-2); background: rgba(34,211,238,.15); opacity: 1 !important; }
+        .dice-emoji { font-size: 2.2rem; margin-bottom: 8px; }
+        .dice-label { font-size: .85rem; color: var(--muted); }
+
+        /* Icebreaker cards */
+        .ice-player {
+            background: var(--card-soft);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 12px;
+        }
+        .ice-player-name {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--accent-2);
+        }
+        .ice-statements {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+        }
+        .ice-statement {
+            background: #fde68a;
+            color: #111827;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: .85rem;
+            font-weight: 600;
+            outline: none;
+            min-height: 50px;
+            cursor: text;
+        }
+        .ice-statement:focus { box-shadow: 0 0 0 2px var(--accent); }
+
+        .ice-reveal {
+            margin-top: 8px;
+            font-size: .82rem;
+            color: var(--muted);
+        }
+        .ice-reveal span {
+            background: var(--card);
+            border: 1px dashed var(--accent);
+            border-radius: 6px;
+            padding: 2px 8px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .ice-reveal span.revealed { background: var(--stop); color: #111; border-style: solid; }
+
+        /* Timer */
+        .timer-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 12px 0;
+        }
+        .timer-display {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            color: var(--accent-2);
+        }
+        .timer-btn {
+            border: 1px solid var(--border);
+            color: var(--text);
+            background: var(--card-soft);
+            border-radius: 8px;
+            padding: 6px 14px;
+            cursor: pointer;
+            font-size: .85rem;
+        }
+        .timer-btn:hover { border-color: var(--accent); }
+
+        @keyframes fade {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <h1>🚀 Rétrospective Sprint 5</h1>
+            <p>Icebreaker "Météo du Sprint" + Rétro "Bien passé / Pas marché" • Date: 26/05/2026</p>
+        </header>
+
+        <nav class="toolbar" id="toolbar">
+            <button class="active" data-target="ice">1. ❄️ Icebreaker</button>
+            <button data-target="retro">2. 📋 Bien passé / Pas marché</button>
+            <button data-target="actions">3. 🎯 Actions</button>
+            <button data-target="cloture">4. 🎬 Clôture</button>
+        </nav>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- SECTION 1: ICEBREAKER — Météo du Sprint -->
+        <!-- ═══════════════════════════════════════════ -->
+        <section id="ice" class="section active">
+            <div class="card">
+                <h2>❄️ Icebreaker — Météo du Sprint</h2>
+                <p class="hint">Choisissez la météo qui correspond à votre ressenti sur ce sprint. Cliquez sur votre icône puis expliquez en une phrase pourquoi.</p>
+
+                <div class="timer-bar">
+                    <span class="timer-display" id="ice-timer">05:00</span>
+                    <button class="timer-btn" onclick="startTimer('ice-timer', 300)">▶ Start</button>
+                    <button class="timer-btn" onclick="resetTimer('ice-timer', 300)">↺ Reset</button>
+                    <span class="hint" style="margin:0;">(5 min — tour de table)</span>
+                </div>
+
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(110px,1fr)); gap:12px; margin:16px 0;">
+                    <div class="dice" onclick="selectDice(this)">
+                        <div class="dice-emoji">☀️</div>
+                        <div class="dice-label">Grand soleil</div>
+                    </div>
+                    <div class="dice" onclick="selectDice(this)">
+                        <div class="dice-emoji">🌤️</div>
+                        <div class="dice-label">Éclaircie</div>
+                    </div>
+                    <div class="dice" onclick="selectDice(this)">
+                        <div class="dice-emoji">⛅</div>
+                        <div class="dice-label">Mitigé</div>
+                    </div>
+                    <div class="dice" onclick="selectDice(this)">
+                        <div class="dice-emoji">🌧️</div>
+                        <div class="dice-label">Pluie</div>
+                    </div>
+                    <div class="dice" onclick="selectDice(this)">
+                        <div class="dice-emoji">⛈️</div>
+                        <div class="dice-label">Orage</div>
+                    </div>
+                    <div class="dice" onclick="selectDice(this)">
+                        <div class="dice-emoji">🌈</div>
+                        <div class="dice-label">Après la pluie</div>
+                    </div>
+                </div>
+
+                <h3>Tour de table — Qui a choisi quoi ?</h3>
+                <div class="postit-grid" style="grid-template-columns: 1fr;">
+                    <div class="postit-col" style="min-height: auto;">
+                        <div class="postit-stack">
+                            <div class="postit idea-color" contenteditable="true" spellcheck="false" style="min-height: 40px;">👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase</div>
+                            <div class="postit idea-color" contenteditable="true" spellcheck="false" style="min-height: 40px;">👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase</div>
+                            <div class="postit idea-color" contenteditable="true" spellcheck="false" style="min-height: 40px;">👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase</div>
+                            <div class="postit idea-color" contenteditable="true" spellcheck="false" style="min-height: 40px;">👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase</div>
+                            <div class="postit idea-color" contenteditable="true" spellcheck="false" style="min-height: 40px;">👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase</div>
+                            <div class="postit idea-color" contenteditable="true" spellcheck="false" style="min-height: 40px;">👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- SECTION 2: RÉTRO — Bien passé / Pas marché -->
+        <!-- ═══════════════════════════════════════════ -->
+        <section id="retro" class="section">
+            <div class="card">
+                <h2>📋 Ce qui s'est bien passé / Ce qui n'a pas marché</h2>
+                <p class="hint">Écrivez directement sur les post-its. Simple et efficace !</p>
+
+                <div class="timer-bar">
+                    <span class="timer-display" id="retro-timer">07:00</span>
+                    <button class="timer-btn" onclick="startTimer('retro-timer', 420)">▶ Start</button>
+                    <button class="timer-btn" onclick="resetTimer('retro-timer', 420)">↺ Reset</button>
+                    <span class="hint" style="margin:0;">(7 min d'écriture silencieuse)</span>
+                </div>
+
+                <div class="postit-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <!-- BIEN PASSÉ -->
+                    <div class="postit-col">
+                        <div class="postit-col-title">👍 Ce qui s'est bien passé</div>
+                        <div class="postit-stack">
+                            <div class="postit start-color" contenteditable="true" spellcheck="false">Post-it 1</div>
+                            <div class="postit start-color" contenteditable="true" spellcheck="false">Post-it 2</div>
+                            <div class="postit start-color" contenteditable="true" spellcheck="false">Post-it 3</div>
+                            <div class="postit start-color" contenteditable="true" spellcheck="false">Post-it 4</div>
+                            <div class="postit start-color" contenteditable="true" spellcheck="false">Post-it 5</div>
+                            <div class="postit start-color" contenteditable="true" spellcheck="false">Post-it 6</div>
+                        </div>
+                    </div>
+
+                    <!-- PAS MARCHÉ -->
+                    <div class="postit-col">
+                        <div class="postit-col-title">👎 Ce qui n'a pas marché</div>
+                        <div class="postit-stack">
+                            <div class="postit stop-color" contenteditable="true" spellcheck="false">Post-it 1</div>
+                            <div class="postit stop-color" contenteditable="true" spellcheck="false">Post-it 2</div>
+                            <div class="postit stop-color" contenteditable="true" spellcheck="false">Post-it 3</div>
+                            <div class="postit stop-color" contenteditable="true" spellcheck="false">Post-it 4</div>
+                            <div class="postit stop-color" contenteditable="true" spellcheck="false">Post-it 5</div>
+                            <div class="postit stop-color" contenteditable="true" spellcheck="false">Post-it 6</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- SECTION 3: ACTIONS -->
+        <!-- ═══════════════════════════════════════════ -->
+        <section id="actions" class="section">
+            <div class="card">
+                <h2>🎯 Top 3 Actions Sprint Suivant</h2>
+                <p class="hint">Votez sur les post-its les plus importants, puis définissez 3 actions concrètes avec un responsable et une échéance.</p>
+
+                <div class="postit-grid" style="grid-template-columns: 1fr;">
+                    <div class="postit-col" style="min-height: auto;">
+                        <div class="postit-stack">
+                            <div style="margin-bottom: 16px;">
+                                <h4>🎯 Action #1</h4>
+                                <div class="postit idea-color" contenteditable="true" spellcheck="false" style="min-height: 50px;">Décrire l'action...</div>
+                                <p style="margin: 6px 0 0; font-size:.85rem; color:var(--muted);">👤 Responsable: <span contenteditable="true" spellcheck="false" style="border-bottom:1px dashed var(--accent);">___________</span></p>
+                                <p style="margin: 4px 0 0; font-size:.85rem; color:var(--muted);">📅 Échéance: <span contenteditable="true" spellcheck="false" style="border-bottom:1px dashed var(--accent);">___________</span></p>
+                            </div>
+                            <div style="margin-bottom: 16px;">
+                                <h4>🎯 Action #2</h4>
+                                <div class="postit idea-color" contenteditable="true" spellcheck="false" style="min-height: 50px;">Décrire l'action...</div>
+                                <p style="margin: 6px 0 0; font-size:.85rem; color:var(--muted);">👤 Responsable: <span contenteditable="true" spellcheck="false" style="border-bottom:1px dashed var(--accent);">___________</span></p>
+                                <p style="margin: 4px 0 0; font-size:.85rem; color:var(--muted);">📅 Échéance: <span contenteditable="true" spellcheck="false" style="border-bottom:1px dashed var(--accent);">___________</span></p>
+                            </div>
+                            <div>
+                                <h4>🎯 Action #3</h4>
+                                <div class="postit idea-color" contenteditable="true" spellcheck="false" style="min-height: 50px;">Décrire l'action...</div>
+                                <p style="margin: 6px 0 0; font-size:.85rem; color:var(--muted);">👤 Responsable: <span contenteditable="true" spellcheck="false" style="border-bottom:1px dashed var(--accent);">___________</span></p>
+                                <p style="margin: 4px 0 0; font-size:.85rem; color:var(--muted);">📅 Échéance: <span contenteditable="true" spellcheck="false" style="border-bottom:1px dashed var(--accent);">___________</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- SECTION 4: CLÔTURE -->
+        <!-- ═══════════════════════════════════════════ -->
+        <section id="cloture" class="section">
+            <div class="card">
+                <h2>🎬 Clôture — ROTI</h2>
+                <p class="hint">Notez cette rétro de 1 à 5 et laissez un mot de fin.</p>
+
+                <div class="postit-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <div class="postit-col" style="text-align:center; min-height: auto;">
+                        <div class="postit-col-title">⭐ ROTI</div>
+                        <div style="font-size: 2.5rem; margin: 10px 0;" contenteditable="true">__ / 5</div>
+                        <p class="hint">Return On Time Invested</p>
+                    </div>
+                    <div class="postit-col" style="text-align:center; min-height: auto;">
+                        <div class="postit-col-title">💪 Confiance Actions</div>
+                        <div style="font-size: 2.5rem; margin: 10px 0;" contenteditable="true">__ / 5</div>
+                        <p class="hint">On y croit à combien ?</p>
+                    </div>
+                    <div class="postit-col" style="text-align:center; min-height: auto;">
+                        <div class="postit-col-title">💬 Mot de Sortie</div>
+                        <div class="postit idea-color" contenteditable="true" spellcheck="false" style="text-align:center; margin-top:10px; min-height:60px;">Un mot qui résume...</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="text-align:center;">
+                <h3>🙌 Merci à tous pour votre participation !</h3>
+                <p class="hint">Rendez-vous au prochain sprint. Keep improving! 🚀</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Navigation
+        const buttons = document.querySelectorAll('#toolbar button');
+        const sections = document.querySelectorAll('.section');
+        buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+                buttons.forEach((b) => b.classList.remove('active'));
+                sections.forEach((s) => s.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(button.dataset.target).classList.add('active');
+            });
+        });
+
+        // Timer
+        const timers = {};
+        function startTimer(id, totalSeconds) {
+            if (timers[id]) clearInterval(timers[id].interval);
+            let remaining = timers[id]?.remaining ?? totalSeconds;
+            timers[id] = { remaining, interval: null };
+            timers[id].interval = setInterval(() => {
+                remaining--;
+                timers[id].remaining = remaining;
+                if (remaining <= 0) {
+                    clearInterval(timers[id].interval);
+                    document.getElementById(id).textContent = "⏰ Terminé!";
+                    document.getElementById(id).style.color = '#fca5a5';
+                    return;
+                }
+                const m = String(Math.floor(remaining / 60)).padStart(2, '0');
+                const s = String(remaining % 60).padStart(2, '0');
+                document.getElementById(id).textContent = `${m}:${s}`;
+            }, 1000);
+        }
+
+        function selectDice(el) {
+            document.querySelectorAll('.dice').forEach(d => { d.classList.remove('selected'); d.style.opacity = '0.5'; });
+            el.classList.add('selected');
+            el.style.opacity = '1';
+        }
+
+        function resetTimer(id, totalSeconds) {
+            if (timers[id]) clearInterval(timers[id].interval);
+            timers[id] = { remaining: totalSeconds, interval: null };
+            const m = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+            const s = String(totalSeconds % 60).padStart(2, '0');
+            const el = document.getElementById(id);
+            el.textContent = `${m}:${s}`;
+            el.style.color = 'var(--accent-2)';
+        }
+    </script>
+</body>
+</html>
