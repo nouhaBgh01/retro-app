@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,30 +14,54 @@
             --muted: #9ea7cb;
             --accent: #8b5cf6;
             --accent-2: #22d3ee;
-            --border: rgba(255,255,255,.10);
+            --border: rgba(255, 255, 255, .10);
             --start: #86efac;
             --stop: #fca5a5;
             --continue: #93c5fd;
         }
-        * { box-sizing: border-box; }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             font-family: Inter, Segoe UI, Arial, sans-serif;
-            background: radial-gradient(circle at top right, rgba(139,92,246,.20), transparent 35%), var(--bg);
+            background: radial-gradient(circle at top right, rgba(139, 92, 246, .20), transparent 35%), var(--bg);
             color: var(--text);
         }
-        .container { max-width: 1320px; margin: 0 auto; padding: 22px; }
+
+        .container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 22px;
+        }
+
         .hero {
-            background: linear-gradient(140deg, rgba(139,92,246,.24), rgba(34,211,238,.12));
+            background: linear-gradient(140deg, rgba(139, 92, 246, .24), rgba(34, 211, 238, .12));
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 20px;
             margin-bottom: 14px;
         }
-        .hero h1 { margin: 0 0 8px; font-size: 2rem; }
-        .hero p { margin: 0; color: var(--muted); }
 
-        .toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+        .hero h1 {
+            margin: 0 0 8px;
+            font-size: 2rem;
+        }
+
+        .hero p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 14px 0;
+        }
+
         .toolbar button {
             border: 1px solid var(--border);
             color: var(--text);
@@ -47,11 +72,24 @@
             transition: all .2s;
             font-size: .9rem;
         }
-        .toolbar button:hover { border-color: var(--accent); }
-        .toolbar button.active { background: var(--accent); border-color: transparent; }
 
-        .section { display: none; animation: fade .22s ease-in-out; }
-        .section.active { display: block; }
+        .toolbar button:hover {
+            border-color: var(--accent);
+        }
+
+        .toolbar button.active {
+            background: var(--accent);
+            border-color: transparent;
+        }
+
+        .section {
+            display: none;
+            animation: fade .22s ease-in-out;
+        }
+
+        .section.active {
+            display: block;
+        }
 
         .card {
             background: var(--card);
@@ -61,9 +99,21 @@
             margin-bottom: 12px;
         }
 
-        h2 { margin: 0 0 10px; font-size: 1.2rem; }
-        h3 { margin: 14px 0 10px; font-size: 1rem; color: var(--accent-2); }
-        h4 { margin: 0 0 8px; font-size: .95rem; }
+        h2 {
+            margin: 0 0 10px;
+            font-size: 1.2rem;
+        }
+
+        h3 {
+            margin: 14px 0 10px;
+            font-size: 1rem;
+            color: var(--accent-2);
+        }
+
+        h4 {
+            margin: 0 0 8px;
+            font-size: .95rem;
+        }
 
         .postit-grid {
             display: grid;
@@ -71,6 +121,7 @@
             gap: 12px;
             margin-top: 12px;
         }
+
         .postit-col {
             background: #12162a;
             border: 1px solid var(--border);
@@ -78,6 +129,7 @@
             padding: 12px;
             min-height: 350px;
         }
+
         .postit-col-title {
             font-size: 1.1rem;
             font-weight: 600;
@@ -85,7 +137,12 @@
             text-align: center;
             color: var(--text);
         }
-        .postit-stack { display: grid; gap: 10px; }
+
+        .postit-stack {
+            display: grid;
+            gap: 10px;
+        }
+
         .postit {
             min-height: 68px;
             border-radius: 10px;
@@ -94,17 +151,35 @@
             font-weight: 600;
             font-size: .88rem;
             outline: none;
-            box-shadow: 0 8px 18px rgba(0,0,0,.25);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, .25);
             cursor: text;
         }
-        .postit:focus { box-shadow: 0 0 0 2px rgba(255,255,255,.65); }
 
-        .start-color { background: var(--start); }
-        .stop-color { background: var(--stop); }
-        .continue-color { background: var(--continue); }
-        .idea-color { background: #fde68a; }
+        .postit:focus {
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, .65);
+        }
 
-        .hint { color: var(--muted); font-size: .9rem; margin: 8px 0 0 0; }
+        .start-color {
+            background: var(--start);
+        }
+
+        .stop-color {
+            background: var(--stop);
+        }
+
+        .continue-color {
+            background: var(--continue);
+        }
+
+        .idea-color {
+            background: #fde68a;
+        }
+
+        .hint {
+            color: var(--muted);
+            font-size: .9rem;
+            margin: 8px 0 0 0;
+        }
 
         .dice {
             background: var(--card-soft);
@@ -120,10 +195,27 @@
             justify-content: center;
             align-items: center;
         }
-        .dice:hover { transform: scale(1.05); border-color: var(--accent-2); }
-        .dice.selected { border-color: var(--accent-2); background: rgba(34,211,238,.15); opacity: 1 !important; }
-        .dice-emoji { font-size: 2.2rem; margin-bottom: 8px; }
-        .dice-label { font-size: .85rem; color: var(--muted); }
+
+        .dice:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-2);
+        }
+
+        .dice.selected {
+            border-color: var(--accent-2);
+            background: rgba(34, 211, 238, .15);
+            opacity: 1 !important;
+        }
+
+        .dice-emoji {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+
+        .dice-label {
+            font-size: .85rem;
+            color: var(--muted);
+        }
 
         /* Icebreaker cards */
         .ice-player {
@@ -133,17 +225,20 @@
             padding: 14px;
             margin-bottom: 12px;
         }
+
         .ice-player-name {
             font-weight: 700;
             font-size: 1rem;
             margin-bottom: 10px;
             color: var(--accent-2);
         }
+
         .ice-statements {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 8px;
         }
+
         .ice-statement {
             background: #fde68a;
             color: #111827;
@@ -155,13 +250,17 @@
             min-height: 50px;
             cursor: text;
         }
-        .ice-statement:focus { box-shadow: 0 0 0 2px var(--accent); }
+
+        .ice-statement:focus {
+            box-shadow: 0 0 0 2px var(--accent);
+        }
 
         .ice-reveal {
             margin-top: 8px;
             font-size: .82rem;
             color: var(--muted);
         }
+
         .ice-reveal span {
             background: var(--card);
             border: 1px dashed var(--accent);
@@ -170,7 +269,12 @@
             cursor: pointer;
             user-select: none;
         }
-        .ice-reveal span.revealed { background: var(--stop); color: #111; border-style: solid; }
+
+        .ice-reveal span.revealed {
+            background: var(--stop);
+            color: #111;
+            border-style: solid;
+        }
 
         /* Timer */
         .timer-bar {
@@ -179,12 +283,14 @@
             gap: 12px;
             margin: 12px 0;
         }
+
         .timer-display {
             font-size: 1.8rem;
             font-weight: 700;
             font-variant-numeric: tabular-nums;
             color: var(--accent-2);
         }
+
         .timer-btn {
             border: 1px solid var(--border);
             color: var(--text);
@@ -194,14 +300,25 @@
             cursor: pointer;
             font-size: .85rem;
         }
-        .timer-btn:hover { border-color: var(--accent); }
+
+        .timer-btn:hover {
+            border-color: var(--accent);
+        }
 
         @keyframes fade {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header class="hero">
@@ -216,13 +333,24 @@
             <button data-target="cloture">4. 🎬 Clôture</button>
         </nav>
 
+        <div class="card" style="padding:12px 16px;">
+            <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;">
+                <p class="hint" style="margin:0;">
+                    🤝 Collaboration temps réel activée. Partagez la même URL (même paramètre
+                    <strong>?board=...</strong>) pour voir les changements de tous les participants.
+                </p>
+                <span id="sync-status" class="hint" style="margin:0; color:#86efac;">● Connexion...</span>
+            </div>
+        </div>
+
         <!-- ═══════════════════════════════════════════ -->
         <!-- SECTION 1: ICEBREAKER — Météo du Sprint -->
         <!-- ═══════════════════════════════════════════ -->
         <section id="ice" class="section active">
             <div class="card">
                 <h2>❄️ Icebreaker — Météo du Sprint</h2>
-                <p class="hint">Choisissez la météo qui correspond à votre ressenti sur ce sprint. Cliquez sur votre icône puis expliquez en une phrase pourquoi.</p>
+                <p class="hint">Choisissez la météo qui correspond à votre ressenti sur ce sprint. Cliquez sur votre
+                    icône puis expliquez en une phrase pourquoi.</p>
 
                 <div class="timer-bar">
                     <span class="timer-display" id="ice-timer">05:00</span>
@@ -231,7 +359,8 @@
                     <span class="hint" style="margin:0;">(5 min — tour de table)</span>
                 </div>
 
-                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(110px,1fr)); gap:12px; margin:16px 0;">
+                <div
+                    style="display:grid; grid-template-columns: repeat(auto-fit, minmax(110px,1fr)); gap:12px; margin:16px 0;">
                     <div class="dice" onclick="selectDice(this)">
                         <div class="dice-emoji">☀️</div>
                         <div class="dice-label">Grand soleil</div>
@@ -262,12 +391,18 @@
                 <div class="postit-grid" style="grid-template-columns: 1fr;">
                     <div class="postit-col" style="min-height: auto;">
                         <div class="postit-stack">
-                            <div class="postit idea-color" contenteditable="true" spellcheck="false" style="min-height: 40px;">👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase</div>
-                            <div class="postit idea-color" contenteditable="true" spellcheck="false" style="min-height: 40px;">👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase</div>
-                            <div class="postit idea-color" contenteditable="true" spellcheck="false" style="min-height: 40px;">👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase</div>
-                            <div class="postit idea-color" contenteditable="true" spellcheck="false" style="min-height: 40px;">👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase</div>
-                            <div class="postit idea-color" contenteditable="true" spellcheck="false" style="min-height: 40px;">👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase</div>
-                            <div class="postit idea-color" contenteditable="true" spellcheck="false" style="min-height: 40px;">👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase</div>
+                            <div class="postit idea-color" contenteditable="true" spellcheck="false"
+                                style="min-height: 40px;">👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase</div>
+                            <div class="postit idea-color" contenteditable="true" spellcheck="false"
+                                style="min-height: 40px;">👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase</div>
+                            <div class="postit idea-color" contenteditable="true" spellcheck="false"
+                                style="min-height: 40px;">👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase</div>
+                            <div class="postit idea-color" contenteditable="true" spellcheck="false"
+                                style="min-height: 40px;">👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase</div>
+                            <div class="postit idea-color" contenteditable="true" spellcheck="false"
+                                style="min-height: 40px;">👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase</div>
+                            <div class="postit idea-color" contenteditable="true" spellcheck="false"
+                                style="min-height: 40px;">👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase</div>
                         </div>
                     </div>
                 </div>
@@ -325,28 +460,44 @@
         <section id="actions" class="section">
             <div class="card">
                 <h2>🎯 Top 3 Actions Sprint Suivant</h2>
-                <p class="hint">Votez sur les post-its les plus importants, puis définissez 3 actions concrètes avec un responsable et une échéance.</p>
+                <p class="hint">Votez sur les post-its les plus importants, puis définissez 3 actions concrètes avec un
+                    responsable et une échéance.</p>
 
                 <div class="postit-grid" style="grid-template-columns: 1fr;">
                     <div class="postit-col" style="min-height: auto;">
                         <div class="postit-stack">
                             <div style="margin-bottom: 16px;">
                                 <h4>🎯 Action #1</h4>
-                                <div class="postit idea-color" contenteditable="true" spellcheck="false" style="min-height: 50px;">Décrire l'action...</div>
-                                <p style="margin: 6px 0 0; font-size:.85rem; color:var(--muted);">👤 Responsable: <span contenteditable="true" spellcheck="false" style="border-bottom:1px dashed var(--accent);">___________</span></p>
-                                <p style="margin: 4px 0 0; font-size:.85rem; color:var(--muted);">📅 Échéance: <span contenteditable="true" spellcheck="false" style="border-bottom:1px dashed var(--accent);">___________</span></p>
+                                <div class="postit idea-color" contenteditable="true" spellcheck="false"
+                                    style="min-height: 50px;">Décrire l'action...</div>
+                                <p style="margin: 6px 0 0; font-size:.85rem; color:var(--muted);">👤 Responsable: <span
+                                        contenteditable="true" spellcheck="false"
+                                        style="border-bottom:1px dashed var(--accent);">___________</span></p>
+                                <p style="margin: 4px 0 0; font-size:.85rem; color:var(--muted);">📅 Échéance: <span
+                                        contenteditable="true" spellcheck="false"
+                                        style="border-bottom:1px dashed var(--accent);">___________</span></p>
                             </div>
                             <div style="margin-bottom: 16px;">
                                 <h4>🎯 Action #2</h4>
-                                <div class="postit idea-color" contenteditable="true" spellcheck="false" style="min-height: 50px;">Décrire l'action...</div>
-                                <p style="margin: 6px 0 0; font-size:.85rem; color:var(--muted);">👤 Responsable: <span contenteditable="true" spellcheck="false" style="border-bottom:1px dashed var(--accent);">___________</span></p>
-                                <p style="margin: 4px 0 0; font-size:.85rem; color:var(--muted);">📅 Échéance: <span contenteditable="true" spellcheck="false" style="border-bottom:1px dashed var(--accent);">___________</span></p>
+                                <div class="postit idea-color" contenteditable="true" spellcheck="false"
+                                    style="min-height: 50px;">Décrire l'action...</div>
+                                <p style="margin: 6px 0 0; font-size:.85rem; color:var(--muted);">👤 Responsable: <span
+                                        contenteditable="true" spellcheck="false"
+                                        style="border-bottom:1px dashed var(--accent);">___________</span></p>
+                                <p style="margin: 4px 0 0; font-size:.85rem; color:var(--muted);">📅 Échéance: <span
+                                        contenteditable="true" spellcheck="false"
+                                        style="border-bottom:1px dashed var(--accent);">___________</span></p>
                             </div>
                             <div>
                                 <h4>🎯 Action #3</h4>
-                                <div class="postit idea-color" contenteditable="true" spellcheck="false" style="min-height: 50px;">Décrire l'action...</div>
-                                <p style="margin: 6px 0 0; font-size:.85rem; color:var(--muted);">👤 Responsable: <span contenteditable="true" spellcheck="false" style="border-bottom:1px dashed var(--accent);">___________</span></p>
-                                <p style="margin: 4px 0 0; font-size:.85rem; color:var(--muted);">📅 Échéance: <span contenteditable="true" spellcheck="false" style="border-bottom:1px dashed var(--accent);">___________</span></p>
+                                <div class="postit idea-color" contenteditable="true" spellcheck="false"
+                                    style="min-height: 50px;">Décrire l'action...</div>
+                                <p style="margin: 6px 0 0; font-size:.85rem; color:var(--muted);">👤 Responsable: <span
+                                        contenteditable="true" spellcheck="false"
+                                        style="border-bottom:1px dashed var(--accent);">___________</span></p>
+                                <p style="margin: 4px 0 0; font-size:.85rem; color:var(--muted);">📅 Échéance: <span
+                                        contenteditable="true" spellcheck="false"
+                                        style="border-bottom:1px dashed var(--accent);">___________</span></p>
                             </div>
                         </div>
                     </div>
@@ -375,7 +526,8 @@
                     </div>
                     <div class="postit-col" style="text-align:center; min-height: auto;">
                         <div class="postit-col-title">💬 Mot de Sortie</div>
-                        <div class="postit idea-color" contenteditable="true" spellcheck="false" style="text-align:center; margin-top:10px; min-height:60px;">Un mot qui résume...</div>
+                        <div class="postit idea-color" contenteditable="true" spellcheck="false"
+                            style="text-align:center; margin-top:10px; min-height:60px;">Un mot qui résume...</div>
                     </div>
                 </div>
             </div>
@@ -386,7 +538,56 @@
         </section>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
     <script>
+        // ===== COLLAB: Firebase Realtime Database =====
+        // 1) Créez un projet Firebase
+        // 2) Activez Realtime Database
+        // 3) Remplacez la config ci-dessous
+        // 4) Déployez sur GitHub Pages et partagez l'URL avec ?board=nom-du-board
+        const firebaseConfig = {
+            apiKey: "AIzaSyDyOd9ghEcF_jbUF2Bmmhzl1c5zWXKSo8w",
+            authDomain: "retro-5b921.firebaseapp.com",
+            databaseURL: "https://retro-5b921-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "retro-5b921",
+            storageBucket: "retro-5b921.firebasestorage.app",
+            messagingSenderId: "172143510239",
+            appId: "1:172143510239:web:f79b2bd3c440608a939f6a",
+            measurementId: "G-PTT0V31Y4P"
+        };
+        const hasFirebaseConfig = !Object.values(firebaseConfig).some(v => String(v).includes('REPLACE_ME'));
+        const params = new URLSearchParams(window.location.search);
+        const boardId = (params.get('board') || 'sprint-5').trim().replace(/[^a-zA-Z0-9_-]/g, '_');
+        const syncStatusEl = document.getElementById('sync-status');
+        let db = null;
+        let boardRef = null;
+        let fieldsRef = null;
+        let presenceRef = null;
+        let applyingRemoteUpdate = false;
+        const localDebouncers = {};
+
+        if (hasFirebaseConfig) {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.database();
+            boardRef = db.ref(`retroBoards/${boardId}`);
+            fieldsRef = boardRef.child('fields');
+            presenceRef = boardRef.child('presence').push();
+
+            presenceRef.set({ joinedAt: Date.now(), ua: navigator.userAgent.slice(0, 60) });
+            presenceRef.onDisconnect().remove();
+
+            db.ref('.info/connected').on('value', (snap) => {
+                const connected = !!snap.val();
+                syncStatusEl.textContent = connected ? '● Connecté (temps réel)' : '● Déconnecté';
+                syncStatusEl.style.color = connected ? '#86efac' : '#fca5a5';
+            });
+        } else {
+            syncStatusEl.textContent = '● Mode local (config Firebase manquante)';
+            syncStatusEl.style.color = '#fbbf24';
+            console.warn('Firebase config is missing. Replace REPLACE_ME values in firebaseConfig.');
+        }
+
         // Navigation
         const buttons = document.querySelectorAll('#toolbar button');
         const sections = document.querySelectorAll('.section');
@@ -398,6 +599,42 @@
                 document.getElementById(button.dataset.target).classList.add('active');
             });
         });
+
+        // Realtime sync for editable fields
+        const editableNodes = [...document.querySelectorAll('[contenteditable="true"]')];
+        editableNodes.forEach((el, idx) => {
+            if (!el.dataset.syncKey) {
+                el.dataset.syncKey = `field_${idx + 1}`;
+            }
+
+            el.addEventListener('input', () => {
+                if (!fieldsRef || applyingRemoteUpdate) return;
+                const key = el.dataset.syncKey;
+                clearTimeout(localDebouncers[key]);
+                localDebouncers[key] = setTimeout(() => {
+                    fieldsRef.child(key).set({
+                        value: el.textContent,
+                        updatedAt: Date.now()
+                    });
+                }, 250);
+            });
+        });
+
+        if (fieldsRef) {
+            fieldsRef.on('value', (snapshot) => {
+                const data = snapshot.val() || {};
+                applyingRemoteUpdate = true;
+                editableNodes.forEach((el) => {
+                    const key = el.dataset.syncKey;
+                    const remoteValue = data[key]?.value;
+                    const isFocused = document.activeElement === el;
+                    if (typeof remoteValue === 'string' && !isFocused && el.textContent !== remoteValue) {
+                        el.textContent = remoteValue;
+                    }
+                });
+                applyingRemoteUpdate = false;
+            });
+        }
 
         // Timer
         const timers = {};
@@ -421,9 +658,30 @@
         }
 
         function selectDice(el) {
-            document.querySelectorAll('.dice').forEach(d => { d.classList.remove('selected'); d.style.opacity = '0.5'; });
+            const allDice = [...document.querySelectorAll('.dice')];
+            allDice.forEach(d => { d.classList.remove('selected'); d.style.opacity = '0.5'; });
             el.classList.add('selected');
             el.style.opacity = '1';
+
+            if (fieldsRef) {
+                const selectedIndex = allDice.findIndex(d => d === el);
+                fieldsRef.child('selectedWeather').set({
+                    value: selectedIndex,
+                    updatedAt: Date.now()
+                });
+            }
+        }
+
+        if (fieldsRef) {
+            fieldsRef.child('selectedWeather').on('value', (snapshot) => {
+                const selectedIndex = snapshot.val()?.value;
+                if (typeof selectedIndex !== 'number') return;
+                const allDice = [...document.querySelectorAll('.dice')];
+                allDice.forEach((d, i) => {
+                    d.classList.toggle('selected', i === selectedIndex);
+                    d.style.opacity = i === selectedIndex ? '1' : '0.5';
+                });
+            });
         }
 
         function resetTimer(id, totalSeconds) {
@@ -437,4 +695,5 @@
         }
     </script>
 </body>
+
 </html>
