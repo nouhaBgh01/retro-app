@@ -323,6 +323,7 @@
     <div class="container">
         <header class="hero">
             <h1>🚀 Rétrospective Botman</h1>
+            <p id="sync-status" class="hint" style="margin:8px 0 0 0;">● Initialisation...</p>
         </header>
 
         <nav class="toolbar" id="toolbar">
@@ -514,6 +515,11 @@
         const params = new URLSearchParams(window.location.search);
         const boardId = (params.get('board') || 'sprint-5').trim().replace(/[^a-zA-Z0-9_-]/g, '_');
         const syncStatusEl = document.getElementById('sync-status');
+        function setSyncStatus(text, color) {
+            if (!syncStatusEl) return;
+            syncStatusEl.textContent = text;
+            syncStatusEl.style.color = color;
+        }
         let db = null;
         let boardRef = null;
         let fieldsRef = null;
@@ -536,24 +542,39 @@
 
             db.ref('.info/connected').on('value', (snap) => {
                 const connected = !!snap.val();
-                syncStatusEl.textContent = connected ? '● Connecté (temps réel)' : '● Déconnecté';
-                syncStatusEl.style.color = connected ? '#86efac' : '#fca5a5';
+                setSyncStatus(
+                    connected ? '● Connecté (temps réel)' : '● Déconnecté',
+                    connected ? '#86efac' : '#fca5a5'
+                );
             });
         } else {
-            syncStatusEl.textContent = '● Mode local (config Firebase manquante)';
-            syncStatusEl.style.color = '#fbbf24';
+            setSyncStatus('● Mode local (config Firebase manquante)', '#fbbf24');
             console.warn('Firebase config is missing. Replace REPLACE_ME values in firebaseConfig.');
         }
 
         // Navigation
         const buttons = document.querySelectorAll('#toolbar button');
         const sections = document.querySelectorAll('.section');
+        function activateSection(sectionId, fromRemote = false) {
+            const targetButton = document.querySelector(`#toolbar button[data-target="${sectionId}"]`);
+            const targetSection = document.getElementById(sectionId);
+            if (!targetButton || !targetSection) return;
+
+            buttons.forEach((b) => b.classList.remove('active'));
+            sections.forEach((s) => s.classList.remove('active'));
+            targetButton.classList.add('active');
+            targetSection.classList.add('active');
+
+            if (fieldsRef && !fromRemote) {
+                fieldsRef.child('activeSection').set({
+                    value: sectionId,
+                    updatedAt: Date.now()
+                });
+            }
+        }
         buttons.forEach((button) => {
             button.addEventListener('click', () => {
-                buttons.forEach((b) => b.classList.remove('active'));
-                sections.forEach((s) => s.classList.remove('active'));
-                button.classList.add('active');
-                document.getElementById(button.dataset.target).classList.add('active');
+                activateSection(button.dataset.target);
             });
         });
 
@@ -563,11 +584,35 @@
                 if (!positsRef || applyingRemoteUpdate) return;
                 clearTimeout(localDebouncers[postitId]);
                 localDebouncers[postitId] = setTimeout(() => {
-                    positsRef.child(postitId).set({
+                    positsRef.child(postitId).update({
                         value: postitEl.textContent,
                         updatedAt: Date.now()
                     });
                 }, 250);
+            });
+        }
+
+        function getPostitColorClass(postitEl) {
+            if (postitEl.classList.contains('start-color')) return 'start-color';
+            if (postitEl.classList.contains('stop-color')) return 'stop-color';
+            if (postitEl.classList.contains('continue-color')) return 'continue-color';
+            if (postitEl.classList.contains('idea-color')) return 'idea-color';
+            return '';
+        }
+
+        function getStickyPostits() {
+            return document.querySelectorAll('.postit.start-color, .postit.stop-color, .postit.continue-color, .postit.idea-color');
+        }
+
+        function ensureStaticPostitIds() {
+            let postitIndex = 0;
+            const allPostits = getStickyPostits();
+            allPostits.forEach((postit) => {
+                if (!postit.dataset.postitId) {
+                    postit.dataset.postitId = `postit_initial_${postitIndex}`;
+                    postitIndex++;
+                }
+                trackedPostitIds.add(postit.dataset.postitId);
             });
         }
 
@@ -689,14 +734,10 @@
                 if (!stack) return;
 
                 // Déterminer la couleur des post-its
-                const firstPostit = stack.querySelector('.postit');
+                const firstPostit = stack.querySelector('.postit.start-color, .postit.stop-color, .postit.continue-color, .postit.idea-color');
                 if (!firstPostit) return;
 
-                let colorClass = '';
-                if (firstPostit.classList.contains('start-color')) colorClass = 'start-color';
-                else if (firstPostit.classList.contains('stop-color')) colorClass = 'stop-color';
-                else if (firstPostit.classList.contains('continue-color')) colorClass = 'continue-color';
-                else if (firstPostit.classList.contains('idea-color')) colorClass = 'idea-color';
+                const colorClass = getPostitColorClass(firstPostit);
 
                 if (colorClass) {
                     addPostitButton(stack, colorClass);
@@ -711,7 +752,7 @@
                 const stack = col.querySelector('.postit-stack');
                 if (stack) {
                     // Chercher le premier post-it pour déduire la couleur
-                    const existingPostits = stack.querySelectorAll('.postit');
+                    const existingPostits = stack.querySelectorAll('.postit.start-color, .postit.stop-color, .postit.continue-color, .postit.idea-color');
                     for (let p of existingPostits) {
                         if (p.classList.contains(colorClass)) {
                             return col;
@@ -728,6 +769,9 @@
             }
             return null;
         }
+
+        // Donner des IDs stables avant la première lecture Firebase pour éviter les doublons.
+        ensureStaticPostitIds();
 
         // ===== SYNCHRONISATION FIREBASE: Chargement initial et écouteurs =====
         if (positsRef) {
@@ -849,6 +893,12 @@
                         }
                     });
                 }
+
+                // Synchroniser l'onglet actif (ice/retro/actions)
+                const activeSection = data.activeSection?.value;
+                if (typeof activeSection === 'string') {
+                    activateSection(activeSection, true);
+                }
                 
                 applyingRemoteUpdate = false;
             });
@@ -937,37 +987,9 @@
         document.addEventListener('DOMContentLoaded', () => {
             console.log('DOM chargé, initialisation en cours...');
             
-            // Attacher les IDs aux post-its statiques existants et les synchroniser avec Firebase
-            let postitIndex = 0;
-            const allPostits = document.querySelectorAll('.postit');
+            // Attacher les listeners sur les vrais post-its (pas les spans inline).
+            const allPostits = getStickyPostits();
             allPostits.forEach((postit) => {
-                if (!postit.dataset.postitId) {
-                    postit.dataset.postitId = `postit_initial_${postitIndex}`;
-                    postitIndex++;
-                }
-                trackedPostitIds.add(postit.dataset.postitId);
-                
-                // Déterminer la couleur
-                let colorClass = '';
-                if (postit.classList.contains('start-color')) colorClass = 'start-color';
-                else if (postit.classList.contains('stop-color')) colorClass = 'stop-color';
-                else if (postit.classList.contains('continue-color')) colorClass = 'continue-color';
-                else if (postit.classList.contains('idea-color')) colorClass = 'idea-color';
-                
-                // Synchroniser le post-it existant dans Firebase au premier chargement SEULEMENT s'il n'est pas vide
-                const text = postit.textContent.trim();
-                const isEmptyTemplate = text === 'Post-it 1' || text === 'Post-it 2' || text === 'Post-it 3' || 
-                                       text === 'Post-it 4' || text === 'Post-it 5' || text === 'Post-it 6' || text === '...';
-                
-                if (positsRef && !isEmptyTemplate) {
-                    positsRef.child(postit.dataset.postitId).set({
-                        value: text,
-                        color: colorClass,
-                        createdAt: Date.now(),
-                        updatedAt: Date.now()
-                    });
-                }
-                
                 attachPostitSyncListener(postit, postit.dataset.postitId);
             });
 
@@ -975,6 +997,17 @@
             setTimeout(() => {
                 initializePostitButtons();
             }, 500);
+
+            // Initialiser la section active en base si absente
+            if (fieldsRef) {
+                fieldsRef.child('activeSection').once('value', (snapshot) => {
+                    const sectionId = snapshot.val()?.value;
+                    if (typeof sectionId !== 'string') {
+                        const defaultActive = document.querySelector('#toolbar button.active')?.dataset.target || 'ice';
+                        activateSection(defaultActive);
+                    }
+                });
+            }
         });
     </script>
 </body>
