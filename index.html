@@ -552,10 +552,10 @@
             console.warn('Firebase config is missing. Replace REPLACE_ME values in firebaseConfig.');
         }
 
-        // Navigation
+        // Navigation (locale à chaque onglet — non synchronisée)
         const buttons = document.querySelectorAll('#toolbar button');
         const sections = document.querySelectorAll('.section');
-        function activateSection(sectionId, fromRemote = false) {
+        function activateSection(sectionId) {
             const targetButton = document.querySelector(`#toolbar button[data-target="${sectionId}"]`);
             const targetSection = document.getElementById(sectionId);
             if (!targetButton || !targetSection) return;
@@ -564,13 +564,6 @@
             sections.forEach((s) => s.classList.remove('active'));
             targetButton.classList.add('active');
             targetSection.classList.add('active');
-
-            if (fieldsRef && !fromRemote) {
-                fieldsRef.child('activeSection').set({
-                    value: sectionId,
-                    updatedAt: Date.now()
-                });
-            }
         }
         buttons.forEach((button) => {
             button.addEventListener('click', () => {
@@ -909,12 +902,6 @@
                     });
                 }
 
-                // Synchroniser l'onglet actif (ice/retro/actions)
-                const activeSection = data.activeSection?.value;
-                if (typeof activeSection === 'string') {
-                    activateSection(activeSection, true);
-                }
-                
                 applyingRemoteUpdate = false;
             });
         }
@@ -1012,17 +999,6 @@
             setTimeout(() => {
                 initializePostitButtons();
             }, 500);
-
-            // Initialiser la section active en base si absente
-            if (fieldsRef) {
-                fieldsRef.child('activeSection').once('value', (snapshot) => {
-                    const sectionId = snapshot.val()?.value;
-                    if (typeof sectionId !== 'string') {
-                        const defaultActive = document.querySelector('#toolbar button.active')?.dataset.target || 'ice';
-                        activateSection(defaultActive);
-                    }
-                });
-            }
         });
     </script>
 </body>
