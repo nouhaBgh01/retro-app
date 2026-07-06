@@ -586,6 +586,7 @@
                 localDebouncers[postitId] = setTimeout(() => {
                     positsRef.child(postitId).update({
                         value: postitEl.textContent,
+                        color: getPostitColorClass(postitEl),
                         updatedAt: Date.now()
                     });
                 }, 250);
@@ -794,8 +795,22 @@
 
                 // Charger les post-it depuis Firebase
                 Object.entries(allPostits).forEach(([postitId, data]) => {
-                    if (!data || !data.color) return;
+                    if (!data) return;
 
+                    // Post-it déjà présent dans le DOM (post-it statique) : on réapplique juste sa valeur
+                    const existingEl = document.querySelector(`[data-postit-id="${postitId}"]`);
+                    if (existingEl) {
+                        if (typeof data.value === 'string') {
+                            applyingRemoteUpdate = true;
+                            existingEl.textContent = data.value;
+                            applyingRemoteUpdate = false;
+                        }
+                        trackedPostitIds.add(postitId);
+                        return;
+                    }
+
+                    // Sinon, post-it dynamique : on le recrée dans la bonne colonne
+                    if (!data.color) return;
                     const targetCol = findColByColor(data.color);
                     if (targetCol) {
                         const stack = targetCol.querySelector('.postit-stack');
