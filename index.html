@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rétro Sprint 5 — Start / Stop / Continue</title>
+    <title>Rétro Sprint 6 — Start / Stop / Continue</title>
     <style>
         :root {
             --bg: #0f1220;
@@ -171,6 +171,10 @@
             background: var(--continue);
         }
 
+        .rock-color {
+            background: #fdba74;
+        }
+
         .idea-color {
             background: #fde68a;
         }
@@ -327,21 +331,21 @@
         </header>
 
         <nav class="toolbar" id="toolbar">
-            <button class="active" data-target="ice">1. ❄️ Icebreaker</button>
-            <button data-target="retro">2. 📋 Bien passé / Pas marché</button>
+            <button class="active" data-target="ice">1. 🚦 Icebreaker</button>
+            <button data-target="retro">2. ⛵ Le Bateau</button>
             <button data-target="actions">3. 🎯 Actions</button>
         </nav>
 
 
 
         <!-- ═══════════════════════════════════════════ -->
-        <!-- SECTION 1: ICEBREAKER — Météo du Sprint -->
+        <!-- SECTION 1: ICEBREAKER — Vitesse du Sprint -->
         <!-- ═══════════════════════════════════════════ -->
         <section id="ice" class="section active">
             <div class="card">
-                <h2>❄️ Icebreaker — Météo du Sprint</h2>
-                <p class="hint">Choisissez la météo qui correspond à votre ressenti sur ce sprint. Cliquez sur votre
-                    icône puis expliquez en une phrase pourquoi.</p>
+                <h2>🚦 Icebreaker — Vitesse du Sprint</h2>
+                <p class="hint">Choisissez l'allure qui correspond le mieux à votre ressenti sur ce sprint. Cliquez
+                    sur votre icône puis expliquez en une phrase pourquoi.</p>
 
                 <div class="timer-bar">
                     <span class="timer-display" id="ice-timer">05:00</span>
@@ -353,28 +357,28 @@
                 <div
                     style="display:grid; grid-template-columns: repeat(auto-fit, minmax(110px,1fr)); gap:12px; margin:16px 0;">
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">☀️</div>
-                        <div class="dice-label">Grand soleil</div>
+                        <div class="dice-emoji">🐢</div>
+                        <div class="dice-label">Au ralenti</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">🌤️</div>
-                        <div class="dice-label">Éclaircie</div>
+                        <div class="dice-emoji">🚶</div>
+                        <div class="dice-label">Tranquille</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">⛅</div>
-                        <div class="dice-label">Mitigé</div>
+                        <div class="dice-emoji">🚴</div>
+                        <div class="dice-label">Bon rythme</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">🌧️</div>
-                        <div class="dice-label">Pluie</div>
+                        <div class="dice-emoji">🏃</div>
+                        <div class="dice-label">Rapide</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">⛈️</div>
-                        <div class="dice-label">Orage</div>
+                        <div class="dice-emoji">🚗</div>
+                        <div class="dice-label">Turbo</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">🌈</div>
-                        <div class="dice-label">Après la pluie</div>
+                        <div class="dice-emoji">🚀</div>
+                        <div class="dice-label">Fusée</div>
                     </div>
                 </div>
 
@@ -383,17 +387,17 @@
                     <div class="postit-col" style="min-height: auto;">
                         <div class="postit-stack">
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️/🌈 — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — 🐢/🚶/🚴/🏃/🚗/🚀 — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️/🌈 — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — 🐢/🚶/🚴/🏃/🚗/🚀 — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️/🌈 — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — 🐢/🚶/🚴/🏃/🚗/🚀 — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️/🌈— Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — 🐢/🚶/🚴/🏃/🚗/🚀 — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️/🌈 — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — 🐢/🚶/🚴/🏃/🚗/🚀 — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️/🌈 — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — 🐢/🚶/🚴/🏃/🚗/🚀 — Pourquoi ?</div>
                         </div>
                     </div>
                 </div>
@@ -401,12 +405,13 @@
         </section>
 
         <!-- ═══════════════════════════════════════════ -->
-        <!-- SECTION 2: RÉTRO — Bien passé / Pas marché -->
+        <!-- SECTION 2: RÉTRO — Le Bateau (Sailboat) -->
         <!-- ═══════════════════════════════════════════ -->
         <section id="retro" class="section">
             <div class="card">
-                <h2>📋 Ce qui s'est bien passé / Ce qui n'a pas marché</h2>
-                <p class="hint">Écrivez directement sur les post-its. Simple et efficace !</p>
+                <h2>⛵ Le Bateau — Sailboat Retrospective</h2>
+                <p class="hint">Imaginez l'équipe comme un bateau naviguant vers son objectif. Écrivez directement
+                    sur les post-its. Simple et efficace !</p>
 
                 <div class="timer-bar">
                     <span class="timer-display" id="retro-timer">07:00</span>
@@ -415,30 +420,48 @@
                     <span class="hint" style="margin:0;">(7 min d'écriture silencieuse)</span>
                 </div>
 
-                <div class="postit-grid" style="grid-template-columns: repeat(2, 1fr);">
-                    <!-- BIEN PASSÉ -->
+                <div class="postit-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+                    <!-- VENT -->
                     <div class="postit-col">
-                        <div class="postit-col-title">👍 Ce qui s'est bien passé</div>
+                        <div class="postit-col-title">🌬️ Vent — Ce qui nous pousse</div>
                         <div class="postit-stack">
                             <div class="postit start-color" contenteditable="true" spellcheck="false">Post-it 1</div>
                             <div class="postit start-color" contenteditable="true" spellcheck="false">Post-it 2</div>
                             <div class="postit start-color" contenteditable="true" spellcheck="false">Post-it 3</div>
                             <div class="postit start-color" contenteditable="true" spellcheck="false">Post-it 4</div>
-                            <div class="postit start-color" contenteditable="true" spellcheck="false">Post-it 5</div>
-                            <div class="postit start-color" contenteditable="true" spellcheck="false">Post-it 6</div>
                         </div>
                     </div>
 
-                    <!-- PAS MARCHÉ -->
+                    <!-- ANCRES -->
                     <div class="postit-col">
-                        <div class="postit-col-title">👎 Ce qui n'a pas marché</div>
+                        <div class="postit-col-title">⚓ Ancres — Ce qui nous freine</div>
                         <div class="postit-stack">
                             <div class="postit stop-color" contenteditable="true" spellcheck="false">Post-it 1</div>
                             <div class="postit stop-color" contenteditable="true" spellcheck="false">Post-it 2</div>
                             <div class="postit stop-color" contenteditable="true" spellcheck="false">Post-it 3</div>
                             <div class="postit stop-color" contenteditable="true" spellcheck="false">Post-it 4</div>
-                            <div class="postit stop-color" contenteditable="true" spellcheck="false">Post-it 5</div>
-                            <div class="postit stop-color" contenteditable="true" spellcheck="false">Post-it 6</div>
+                        </div>
+                    </div>
+
+                    <!-- ROCHERS -->
+                    <div class="postit-col">
+                        <div class="postit-col-title">🪨 Rochers — Risques à venir</div>
+                        <div class="postit-stack">
+                            <div class="postit rock-color" contenteditable="true" spellcheck="false">Post-it 1</div>
+                            <div class="postit rock-color" contenteditable="true" spellcheck="false">Post-it 2</div>
+                            <div class="postit rock-color" contenteditable="true" spellcheck="false">Post-it 3</div>
+                            <div class="postit rock-color" contenteditable="true" spellcheck="false">Post-it 4</div>
+                        </div>
+                    </div>
+
+                    <!-- ÎLE -->
+                    <div class="postit-col">
+                        <div class="postit-col-title">🏝️ Île — Notre objectif</div>
+                        <div class="postit-stack">
+                            <div class="postit continue-color" contenteditable="true" spellcheck="false">Post-it 1</div>
+                            <div class="postit continue-color" contenteditable="true" spellcheck="false">Post-it 2</div>
+                            <div class="postit continue-color" contenteditable="true" spellcheck="false">Post-it 3</div>
+                            <div class="postit continue-color" contenteditable="true" spellcheck="false">Post-it 4</div>
                         </div>
                     </div>
                 </div>
@@ -513,7 +536,7 @@
         };
         const hasFirebaseConfig = !Object.values(firebaseConfig).some(v => String(v).includes('REPLACE_ME'));
         const params = new URLSearchParams(window.location.search);
-        const boardId = (params.get('board') || 'sprint-5').trim().replace(/[^a-zA-Z0-9_-]/g, '_');
+        const boardId = (params.get('board') || 'sprint-6').trim().replace(/[^a-zA-Z0-9_-]/g, '_');
         const syncStatusEl = document.getElementById('sync-status');
         function setSyncStatus(text, color) {
             if (!syncStatusEl) return;
@@ -590,12 +613,13 @@
             if (postitEl.classList.contains('start-color')) return 'start-color';
             if (postitEl.classList.contains('stop-color')) return 'stop-color';
             if (postitEl.classList.contains('continue-color')) return 'continue-color';
+            if (postitEl.classList.contains('rock-color')) return 'rock-color';
             if (postitEl.classList.contains('idea-color')) return 'idea-color';
             return '';
         }
 
         function getStickyPostits() {
-            return document.querySelectorAll('.postit.start-color, .postit.stop-color, .postit.continue-color, .postit.idea-color');
+            return document.querySelectorAll('.postit.start-color, .postit.stop-color, .postit.continue-color, .postit.rock-color, .postit.idea-color');
         }
 
         function ensureStaticPostitIds() {
@@ -648,7 +672,7 @@
                 if (sectionId === 'actions') {
                     defaultText = 'Décrire l\'action';
                 } else {
-                    defaultText = '👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️/🌈 — Pourquoi en 1 phrase';
+                    defaultText = '👤 Nom — 🐢/🚶/🚴/🏃/🚗/🚀 — Pourquoi en 1 phrase';
                 }
             } else if (colorClass === 'start-color' || colorClass === 'stop-color' || colorClass === 'continue-color') {
                 defaultText = '';
@@ -689,7 +713,7 @@
                     defaultText = 'Décrire l\'action';
                 } else {
                     // Section Icebreaker et autres (section 1)
-                    defaultText = '👤 Nom — ☀️/🌧️/⛈️ — Pourquoi en 1 phrase';
+                    defaultText = '👤 Nom — 🐢/🚶/🚴/🏃/🚗/🚀 — Pourquoi en 1 phrase';
                 }
             }
             
@@ -728,7 +752,7 @@
                 if (!stack) return;
 
                 // Déterminer la couleur des post-its
-                const firstPostit = stack.querySelector('.postit.start-color, .postit.stop-color, .postit.continue-color, .postit.idea-color');
+                const firstPostit = stack.querySelector('.postit.start-color, .postit.stop-color, .postit.continue-color, .postit.rock-color, .postit.idea-color');
                 if (!firstPostit) return;
 
                 const colorClass = getPostitColorClass(firstPostit);
@@ -746,7 +770,7 @@
                 const stack = col.querySelector('.postit-stack');
                 if (stack) {
                     // Chercher le premier post-it pour déduire la couleur
-                    const existingPostits = stack.querySelectorAll('.postit.start-color, .postit.stop-color, .postit.continue-color, .postit.idea-color');
+                    const existingPostits = stack.querySelectorAll('.postit.start-color, .postit.stop-color, .postit.continue-color, .postit.rock-color, .postit.idea-color');
                     for (let p of existingPostits) {
                         if (p.classList.contains(colorClass)) {
                             return col;
@@ -755,8 +779,10 @@
                     // Si la stack est vide, vérifier le titre
                     if (existingPostits.length === 0) {
                         // Chercher par le titre de la colonne
-                        if (colorClass === 'start-color' && col.textContent.includes('bien passé')) return col;
-                        if (colorClass === 'stop-color' && col.textContent.includes('pas marché')) return col;
+                        if (colorClass === 'start-color' && col.textContent.includes('Vent')) return col;
+                        if (colorClass === 'stop-color' && col.textContent.includes('Ancres')) return col;
+                        if (colorClass === 'rock-color' && col.textContent.includes('Rochers')) return col;
+                        if (colorClass === 'continue-color' && col.textContent.includes('Île')) return col;
                         if (colorClass === 'idea-color' && (col.textContent.includes('Qui a choisi') || col.textContent.includes('Action') || col.textContent.includes('Mot'))) return col;
                     }
                 }
