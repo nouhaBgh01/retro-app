@@ -159,6 +159,38 @@
             box-shadow: 0 0 0 2px rgba(255, 255, 255, .65);
         }
 
+        .postit:empty::before {
+            content: '✍️ Écrire ici...';
+            opacity: .55;
+            font-weight: 500;
+        }
+
+        .postit.locked,
+        [contenteditable].locked {
+            cursor: not-allowed;
+            opacity: .6;
+            box-shadow: 0 0 0 2px var(--stop) !important;
+        }
+
+        .lock-badge {
+            position: relative;
+        }
+
+        .lock-badge::after {
+            content: attr(data-lock-label);
+            position: absolute;
+            top: -10px;
+            right: 6px;
+            background: #111827;
+            color: #fff;
+            font-size: .65rem;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 6px;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
         .start-color {
             background: var(--start);
         }
@@ -331,20 +363,20 @@
         </header>
 
         <nav class="toolbar" id="toolbar">
-            <button class="active" data-target="ice">1. 🚦 Icebreaker</button>
-            <button data-target="retro">2. ⛵ Le Bateau</button>
+            <button class="active" data-target="ice">1. 🌤️ Icebreaker</button>
+            <button data-target="retro">2. 🎭 Mad / Sad / Glad</button>
             <button data-target="actions">3. 🎯 Actions</button>
         </nav>
 
 
 
         <!-- ═══════════════════════════════════════════ -->
-        <!-- SECTION 1: ICEBREAKER — Vitesse du Sprint -->
+        <!-- SECTION 1: ICEBREAKER — Météo du Sprint -->
         <!-- ═══════════════════════════════════════════ -->
         <section id="ice" class="section active">
             <div class="card">
-                <h2>🚦 Icebreaker — Vitesse du Sprint</h2>
-                <p class="hint">Choisissez l'allure qui correspond le mieux à votre ressenti sur ce sprint. Cliquez
+                <h2>🌤️ Icebreaker — Météo du Sprint</h2>
+                <p class="hint">Choisissez la météo qui correspond le mieux à votre ressenti sur ce sprint. Cliquez
                     sur votre icône puis expliquez en une phrase pourquoi.</p>
 
                 <div class="timer-bar">
@@ -357,28 +389,24 @@
                 <div
                     style="display:grid; grid-template-columns: repeat(auto-fit, minmax(110px,1fr)); gap:12px; margin:16px 0;">
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">🐢</div>
-                        <div class="dice-label">Au ralenti</div>
+                        <div class="dice-emoji">☀️</div>
+                        <div class="dice-label">Grand soleil</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">🚶</div>
-                        <div class="dice-label">Tranquille</div>
+                        <div class="dice-emoji">🌤️</div>
+                        <div class="dice-label">Ensoleillé</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">🚴</div>
-                        <div class="dice-label">Bon rythme</div>
+                        <div class="dice-emoji">⛅</div>
+                        <div class="dice-label">Mitigé</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">🏃</div>
-                        <div class="dice-label">Rapide</div>
+                        <div class="dice-emoji">🌧️</div>
+                        <div class="dice-label">Pluvieux</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">🚗</div>
-                        <div class="dice-label">Turbo</div>
-                    </div>
-                    <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">🚀</div>
-                        <div class="dice-label">Fusée</div>
+                        <div class="dice-emoji">⛈️</div>
+                        <div class="dice-label">Tempête</div>
                     </div>
                 </div>
 
@@ -387,17 +415,17 @@
                     <div class="postit-col" style="min-height: auto;">
                         <div class="postit-stack">
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — 🐢/🚶/🚴/🏃/🚗/🚀 — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — 🐢/🚶/🚴/🏃/🚗/🚀 — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — 🐢/🚶/🚴/🏃/🚗/🚀 — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — 🐢/🚶/🚴/🏃/🚗/🚀 — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — 🐢/🚶/🚴/🏃/🚗/🚀 — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — 🐢/🚶/🚴/🏃/🚗/🚀 — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?</div>
                         </div>
                     </div>
                 </div>
@@ -405,13 +433,13 @@
         </section>
 
         <!-- ═══════════════════════════════════════════ -->
-        <!-- SECTION 2: RÉTRO — Le Bateau (Sailboat) -->
+        <!-- SECTION 2: RÉTRO — Mad / Sad / Glad -->
         <!-- ═══════════════════════════════════════════ -->
         <section id="retro" class="section">
             <div class="card">
-                <h2>⛵ Le Bateau — Sailboat Retrospective</h2>
-                <p class="hint">Imaginez l'équipe comme un bateau naviguant vers son objectif. Écrivez directement
-                    sur les post-its. Simple et efficace !</p>
+                <h2>🎭 Mad / Sad / Glad</h2>
+                <p class="hint">Exprimez vos émotions sur ce sprint : ce qui vous a frustré, déçu ou rendu heureux.
+                    Écrivez directement sur les post-its. Simple et efficace !</p>
 
                 <div class="timer-bar">
                     <span class="timer-display" id="retro-timer">07:00</span>
@@ -421,47 +449,36 @@
                 </div>
 
                 <div class="postit-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
-                    <!-- VENT -->
+                    <!-- MAD -->
                     <div class="postit-col">
-                        <div class="postit-col-title">🌬️ Vent — Ce qui nous pousse</div>
+                        <div class="postit-col-title">😡 Mad — Ce qui nous a frustrés</div>
                         <div class="postit-stack">
-                            <div class="postit start-color" contenteditable="true" spellcheck="false">Post-it 1</div>
-                            <div class="postit start-color" contenteditable="true" spellcheck="false">Post-it 2</div>
-                            <div class="postit start-color" contenteditable="true" spellcheck="false">Post-it 3</div>
-                            <div class="postit start-color" contenteditable="true" spellcheck="false">Post-it 4</div>
+                            <div class="postit stop-color" contenteditable="true" spellcheck="false"></div>
+                            <div class="postit stop-color" contenteditable="true" spellcheck="false"></div>
+                            <div class="postit stop-color" contenteditable="true" spellcheck="false"></div>
+                            <div class="postit stop-color" contenteditable="true" spellcheck="false"></div>
                         </div>
                     </div>
 
-                    <!-- ANCRES -->
+                    <!-- SAD -->
                     <div class="postit-col">
-                        <div class="postit-col-title">⚓ Ancres — Ce qui nous freine</div>
+                        <div class="postit-col-title">😢 Sad — Ce qui nous a déçus</div>
                         <div class="postit-stack">
-                            <div class="postit stop-color" contenteditable="true" spellcheck="false">Post-it 1</div>
-                            <div class="postit stop-color" contenteditable="true" spellcheck="false">Post-it 2</div>
-                            <div class="postit stop-color" contenteditable="true" spellcheck="false">Post-it 3</div>
-                            <div class="postit stop-color" contenteditable="true" spellcheck="false">Post-it 4</div>
+                            <div class="postit continue-color" contenteditable="true" spellcheck="false"></div>
+                            <div class="postit continue-color" contenteditable="true" spellcheck="false"></div>
+                            <div class="postit continue-color" contenteditable="true" spellcheck="false"></div>
+                            <div class="postit continue-color" contenteditable="true" spellcheck="false"></div>
                         </div>
                     </div>
 
-                    <!-- ROCHERS -->
+                    <!-- GLAD -->
                     <div class="postit-col">
-                        <div class="postit-col-title">🪨 Rochers — Risques à venir</div>
+                        <div class="postit-col-title">😄 Glad — Ce qui nous a fait plaisir</div>
                         <div class="postit-stack">
-                            <div class="postit rock-color" contenteditable="true" spellcheck="false">Post-it 1</div>
-                            <div class="postit rock-color" contenteditable="true" spellcheck="false">Post-it 2</div>
-                            <div class="postit rock-color" contenteditable="true" spellcheck="false">Post-it 3</div>
-                            <div class="postit rock-color" contenteditable="true" spellcheck="false">Post-it 4</div>
-                        </div>
-                    </div>
-
-                    <!-- ÎLE -->
-                    <div class="postit-col">
-                        <div class="postit-col-title">🏝️ Île — Notre objectif</div>
-                        <div class="postit-stack">
-                            <div class="postit continue-color" contenteditable="true" spellcheck="false">Post-it 1</div>
-                            <div class="postit continue-color" contenteditable="true" spellcheck="false">Post-it 2</div>
-                            <div class="postit continue-color" contenteditable="true" spellcheck="false">Post-it 3</div>
-                            <div class="postit continue-color" contenteditable="true" spellcheck="false">Post-it 4</div>
+                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
+                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
+                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
+                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
                         </div>
                     </div>
                 </div>
@@ -548,9 +565,12 @@
         let fieldsRef = null;
         let positsRef = null;
         let presenceRef = null;
+        let locksRef = null;
         let applyingRemoteUpdate = false;
         const localDebouncers = {};
         const trackedPostitIds = new Set();
+        const sessionId = `user_${Math.random().toString(36).slice(2, 10)}_${Date.now()}`;
+        const LOCK_TIMEOUT_MS = 30000; // sécurité anti-verrou fantôme
 
         if (hasFirebaseConfig) {
             firebase.initializeApp(firebaseConfig);
@@ -558,6 +578,7 @@
             boardRef = db.ref(`retroBoards/${boardId}`);
             fieldsRef = boardRef.child('fields');
             positsRef = boardRef.child('postits');
+            locksRef = boardRef.child('locks');
             presenceRef = boardRef.child('presence').push();
 
             presenceRef.set({ joinedAt: Date.now(), ua: navigator.userAgent.slice(0, 60) });
@@ -606,6 +627,60 @@
                         updatedAt: Date.now()
                     });
                 }, 250);
+            });
+            attachLockHandlers(postitEl, `postit_${postitId}`);
+        }
+
+        // ===== VERROUILLAGE: empêcher 2 utilisateurs d'écraser le même post-it =====
+        function getLockKey(el) {
+            if (el.dataset.postitId) return `postit_${el.dataset.postitId}`;
+            if (el.dataset.syncKey) return `field_${el.dataset.syncKey}`;
+            return null;
+        }
+
+        function attachLockHandlers(el, explicitKey) {
+            if (el.dataset.lockAttached === '1') return;
+            el.dataset.lockAttached = '1';
+
+            el.addEventListener('focus', () => {
+                if (!locksRef) return;
+                const key = explicitKey || getLockKey(el);
+                if (!key) return;
+                const lockRef = locksRef.child(key);
+                lockRef.set({ by: sessionId, at: Date.now() });
+                lockRef.onDisconnect().remove();
+            });
+
+            el.addEventListener('blur', () => {
+                if (!locksRef) return;
+                const key = explicitKey || getLockKey(el);
+                if (!key) return;
+                locksRef.child(key).remove();
+            });
+        }
+
+        function applyLockState(el, lock) {
+            const isLockedByOther = !!lock && lock.by !== sessionId && (Date.now() - lock.at) < LOCK_TIMEOUT_MS;
+            if (isLockedByOther) {
+                if (document.activeElement === el) el.blur();
+                el.contentEditable = 'false';
+                el.classList.add('locked', 'lock-badge');
+                el.setAttribute('data-lock-label', '🔒 en cours d\'édition');
+            } else {
+                el.contentEditable = 'true';
+                el.classList.remove('locked', 'lock-badge');
+                el.removeAttribute('data-lock-label');
+            }
+        }
+
+        function watchLocks() {
+            if (!locksRef) return;
+            locksRef.on('value', (snapshot) => {
+                const locks = snapshot.val() || {};
+                document.querySelectorAll('[data-postit-id], [data-sync-key]').forEach((el) => {
+                    const key = getLockKey(el);
+                    applyLockState(el, key ? locks[key] : null);
+                });
             });
         }
 
@@ -672,7 +747,7 @@
                 if (sectionId === 'actions') {
                     defaultText = 'Décrire l\'action';
                 } else {
-                    defaultText = '👤 Nom — 🐢/🚶/🚴/🏃/🚗/🚀 — Pourquoi en 1 phrase';
+                    defaultText = '👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi en 1 phrase';
                 }
             } else if (colorClass === 'start-color' || colorClass === 'stop-color' || colorClass === 'continue-color') {
                 defaultText = '';
@@ -713,7 +788,7 @@
                     defaultText = 'Décrire l\'action';
                 } else {
                     // Section Icebreaker et autres (section 1)
-                    defaultText = '👤 Nom — 🐢/🚶/🚴/🏃/🚗/🚀 — Pourquoi en 1 phrase';
+                    defaultText = '👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi en 1 phrase';
                 }
             }
             
@@ -779,10 +854,9 @@
                     // Si la stack est vide, vérifier le titre
                     if (existingPostits.length === 0) {
                         // Chercher par le titre de la colonne
-                        if (colorClass === 'start-color' && col.textContent.includes('Vent')) return col;
-                        if (colorClass === 'stop-color' && col.textContent.includes('Ancres')) return col;
-                        if (colorClass === 'rock-color' && col.textContent.includes('Rochers')) return col;
-                        if (colorClass === 'continue-color' && col.textContent.includes('Île')) return col;
+                        if (colorClass === 'start-color' && col.textContent.includes('Glad')) return col;
+                        if (colorClass === 'stop-color' && col.textContent.includes('Mad')) return col;
+                        if (colorClass === 'continue-color' && col.textContent.includes('Sad')) return col;
                         if (colorClass === 'idea-color' && (col.textContent.includes('Qui a choisi') || col.textContent.includes('Action') || col.textContent.includes('Mot'))) return col;
                     }
                 }
@@ -883,6 +957,7 @@
             if (!el.dataset.syncKey) {
                 el.dataset.syncKey = `field_${idx + 1}`;
             }
+            attachLockHandlers(el);
 
             el.addEventListener('input', () => {
                 if (!fieldsRef || applyingRemoteUpdate) return;
@@ -1025,6 +1100,9 @@
             setTimeout(() => {
                 initializePostitButtons();
             }, 500);
+
+            // Démarrer la surveillance des verrous (empêche l'écrasement concurrent)
+            watchLocks();
         });
     </script>
 </body>
