@@ -363,21 +363,21 @@
         </header>
 
         <nav class="toolbar" id="toolbar">
-            <button class="active" data-target="ice">1. 🌤️ Icebreaker</button>
-            <button data-target="retro">2. 🎭 Mad / Sad / Glad</button>
+            <button class="active" data-target="ice">1. 💬 Icebreaker</button>
+            <button data-target="retro">2. 🚦 Start / Stop / Continue</button>
             <button data-target="actions">3. 🎯 Actions</button>
         </nav>
 
 
 
         <!-- ═══════════════════════════════════════════ -->
-        <!-- SECTION 1: ICEBREAKER — Météo du Sprint -->
+        <!-- SECTION 1: ICEBREAKER — Un mot pour le sprint -->
         <!-- ═══════════════════════════════════════════ -->
         <section id="ice" class="section active">
             <div class="card">
-                <h2>🌤️ Icebreaker — Météo du Sprint</h2>
-                <p class="hint">Choisissez la météo qui correspond le mieux à votre ressenti sur ce sprint. Cliquez
-                    sur votre icône puis expliquez en une phrase pourquoi.</p>
+                <h2>💬 Icebreaker — Un mot pour le sprint</h2>
+                <p class="hint">Choisissez ou inventez un mot (ou une expression) qui résume votre sprint en une image.
+                    Cliquez sur une suggestion pour voter, puis expliquez votre choix sur les post-its ci-dessous.</p>
 
                 <div class="timer-bar">
                     <span class="timer-display" id="ice-timer">05:00</span>
@@ -389,43 +389,47 @@
                 <div
                     style="display:grid; grid-template-columns: repeat(auto-fit, minmax(110px,1fr)); gap:12px; margin:16px 0;">
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">☀️</div>
-                        <div class="dice-label">Grand soleil</div>
+                        <div class="dice-emoji">🚀</div>
+                        <div class="dice-label">Fusée</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">🌤️</div>
-                        <div class="dice-label">Ensoleillé</div>
+                        <div class="dice-emoji">💪</div>
+                        <div class="dice-label">Solide</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">⛅</div>
-                        <div class="dice-label">Mitigé</div>
+                        <div class="dice-emoji">🎢</div>
+                        <div class="dice-label">Montagnes russes</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">🌧️</div>
-                        <div class="dice-label">Pluvieux</div>
+                        <div class="dice-emoji">😅</div>
+                        <div class="dice-label">Speed</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">⛈️</div>
-                        <div class="dice-label">Tempête</div>
+                        <div class="dice-emoji">😴</div>
+                        <div class="dice-label">Épuisant</div>
+                    </div>
+                    <div class="dice" onclick="selectDice(this)">
+                        <div class="dice-emoji">🎉</div>
+                        <div class="dice-label">Victoire</div>
                     </div>
                 </div>
 
-                <h3>Tour de table — Qui a choisi quoi ?</h3>
+                <h3>Tour de table — Le mot de chacun</h3>
                 <div class="postit-grid" style="grid-template-columns: 1fr;">
                     <div class="postit-col" style="min-height: auto;">
                         <div class="postit-stack">
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — Mon mot : ... — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — Mon mot : ... — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — Mon mot : ... — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — Mon mot : ... — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — Mon mot : ... — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — Mon mot : ... — Pourquoi ?</div>
                         </div>
                     </div>
                 </div>
@@ -433,12 +437,12 @@
         </section>
 
         <!-- ═══════════════════════════════════════════ -->
-        <!-- SECTION 2: RÉTRO — Mad / Sad / Glad -->
+        <!-- SECTION 2: RÉTRO — Start / Stop / Continue -->
         <!-- ═══════════════════════════════════════════ -->
         <section id="retro" class="section">
             <div class="card">
-                <h2>🎭 Mad / Sad / Glad</h2>
-                <p class="hint">Exprimez vos émotions sur ce sprint : ce qui vous a frustré, déçu ou rendu heureux.
+                <h2>🚦 Start / Stop / Continue</h2>
+                <p class="hint">Identifiez ce qu'on devrait commencer à faire, arrêter de faire et continuer de faire.
                     Écrivez directement sur les post-its. Simple et efficace !</p>
 
                 <div class="timer-bar">
@@ -449,9 +453,20 @@
                 </div>
 
                 <div class="postit-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
-                    <!-- MAD -->
+                    <!-- START -->
                     <div class="postit-col">
-                        <div class="postit-col-title">😡 Mad — Ce qui nous a frustrés</div>
+                        <div class="postit-col-title">🟢 Start — Ce qu'on devrait commencer</div>
+                        <div class="postit-stack">
+                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
+                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
+                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
+                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
+                        </div>
+                    </div>
+
+                    <!-- STOP -->
+                    <div class="postit-col">
+                        <div class="postit-col-title">🔴 Stop — Ce qu'on devrait arrêter</div>
                         <div class="postit-stack">
                             <div class="postit stop-color" contenteditable="true" spellcheck="false"></div>
                             <div class="postit stop-color" contenteditable="true" spellcheck="false"></div>
@@ -460,25 +475,14 @@
                         </div>
                     </div>
 
-                    <!-- SAD -->
+                    <!-- CONTINUE -->
                     <div class="postit-col">
-                        <div class="postit-col-title">😢 Sad — Ce qui nous a déçus</div>
+                        <div class="postit-col-title">🔵 Continue — Ce qu'on devrait continuer</div>
                         <div class="postit-stack">
                             <div class="postit continue-color" contenteditable="true" spellcheck="false"></div>
                             <div class="postit continue-color" contenteditable="true" spellcheck="false"></div>
                             <div class="postit continue-color" contenteditable="true" spellcheck="false"></div>
                             <div class="postit continue-color" contenteditable="true" spellcheck="false"></div>
-                        </div>
-                    </div>
-
-                    <!-- GLAD -->
-                    <div class="postit-col">
-                        <div class="postit-col-title">😄 Glad — Ce qui nous a fait plaisir</div>
-                        <div class="postit-stack">
-                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
-                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
-                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
-                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
                         </div>
                     </div>
                 </div>
@@ -788,7 +792,7 @@
                     defaultText = 'Décrire l\'action';
                 } else {
                     // Section Icebreaker et autres (section 1)
-                    defaultText = '👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi en 1 phrase';
+                    defaultText = '👤 Nom — Mon mot : ... — Pourquoi en 1 phrase';
                 }
             }
             
@@ -854,10 +858,10 @@
                     // Si la stack est vide, vérifier le titre
                     if (existingPostits.length === 0) {
                         // Chercher par le titre de la colonne
-                        if (colorClass === 'start-color' && col.textContent.includes('Glad')) return col;
-                        if (colorClass === 'stop-color' && col.textContent.includes('Mad')) return col;
-                        if (colorClass === 'continue-color' && col.textContent.includes('Sad')) return col;
-                        if (colorClass === 'idea-color' && (col.textContent.includes('Qui a choisi') || col.textContent.includes('Action') || col.textContent.includes('Mot'))) return col;
+                        if (colorClass === 'start-color' && col.textContent.includes('Start')) return col;
+                        if (colorClass === 'stop-color' && col.textContent.includes('Stop')) return col;
+                        if (colorClass === 'continue-color' && col.textContent.includes('Continue')) return col;
+                        if (colorClass === 'idea-color' && (col.textContent.includes('mot de chacun') || col.textContent.includes('Action') || col.textContent.includes('Mot'))) return col;
                     }
                 }
             }
@@ -1036,7 +1040,7 @@
 
             if (fieldsRef) {
                 const selectedIndex = allDice.findIndex(d => d === el);
-                fieldsRef.child('selectedWeather').set({
+                fieldsRef.child('selectedWord').set({
                     value: selectedIndex,
                     updatedAt: Date.now()
                 });
@@ -1044,7 +1048,7 @@
         }
 
         if (fieldsRef) {
-            fieldsRef.child('selectedWeather').on('value', (snapshot) => {
+            fieldsRef.child('selectedWord').on('value', (snapshot) => {
                 const selectedIndex = snapshot.val()?.value;
                 if (typeof selectedIndex !== 'number') return;
                 const allDice = [...document.querySelectorAll('.dice')];
