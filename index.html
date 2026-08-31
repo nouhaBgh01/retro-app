@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rétro Sprint 6 — Start / Stop / Continue</title>
+    <title>Rétro Sprint 7 — Mad / Sad / Glad</title>
     <style>
         :root {
             --bg: #0f1220;
@@ -364,20 +364,20 @@
 
         <nav class="toolbar" id="toolbar">
             <button class="active" data-target="ice">1. 💬 Icebreaker</button>
-            <button data-target="retro">2. 🚦 Start / Stop / Continue</button>
+            <button data-target="retro">2. 🎭 Mad / Sad / Glad</button>
             <button data-target="actions">3. 🎯 Actions</button>
         </nav>
 
 
 
         <!-- ═══════════════════════════════════════════ -->
-        <!-- SECTION 1: ICEBREAKER — Un mot pour le sprint -->
+        <!-- SECTION 1: ICEBREAKER — Météo d'équipe -->
         <!-- ═══════════════════════════════════════════ -->
         <section id="ice" class="section active">
             <div class="card">
-                <h2>💬 Icebreaker — Un mot pour le sprint</h2>
-                <p class="hint">Choisissez ou inventez un mot (ou une expression) qui résume votre sprint en une image.
-                    Cliquez sur une suggestion pour voter, puis expliquez votre choix sur les post-its ci-dessous.</p>
+                <h2>💬 Icebreaker — Météo d'équipe</h2>
+                <p class="hint">Quelle météo résume votre ressenti sur ce sprint ? Cliquez sur l'emoji qui vous
+                    correspond pour voter, puis expliquez votre choix sur les post-its ci-dessous.</p>
 
                 <div class="timer-bar">
                     <span class="timer-display" id="ice-timer">05:00</span>
@@ -389,47 +389,47 @@
                 <div
                     style="display:grid; grid-template-columns: repeat(auto-fit, minmax(110px,1fr)); gap:12px; margin:16px 0;">
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">🚀</div>
-                        <div class="dice-label">Fusée</div>
+                        <div class="dice-emoji">☀️</div>
+                        <div class="dice-label">Grand soleil</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">💪</div>
-                        <div class="dice-label">Solide</div>
+                        <div class="dice-emoji">🌤️</div>
+                        <div class="dice-label">Beau temps</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">🎢</div>
-                        <div class="dice-label">Montagnes russes</div>
+                        <div class="dice-emoji">⛅</div>
+                        <div class="dice-label">Mitigé</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">😅</div>
-                        <div class="dice-label">Speed</div>
+                        <div class="dice-emoji">🌧️</div>
+                        <div class="dice-label">Pluvieux</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">😴</div>
-                        <div class="dice-label">Épuisant</div>
+                        <div class="dice-emoji">⛈️</div>
+                        <div class="dice-label">Tempête</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">🎉</div>
-                        <div class="dice-label">Victoire</div>
+                        <div class="dice-emoji">🌈</div>
+                        <div class="dice-label">Éclaircie</div>
                     </div>
                 </div>
 
-                <h3>Tour de table — Le mot de chacun</h3>
+                <h3>Tour de table — La météo de chacun</h3>
                 <div class="postit-grid" style="grid-template-columns: 1fr;">
                     <div class="postit-col" style="min-height: auto;">
                         <div class="postit-stack">
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — Mon mot : ... — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — Ma météo : ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — Mon mot : ... — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — Ma météo : ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — Mon mot : ... — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — Ma météo : ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — Mon mot : ... — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — Ma météo : ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — Mon mot : ... — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — Ma météo : ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — Mon mot : ... — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — Ma météo : ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?</div>
                         </div>
                     </div>
                 </div>
@@ -437,13 +437,14 @@
         </section>
 
         <!-- ═══════════════════════════════════════════ -->
-        <!-- SECTION 2: RÉTRO — Start / Stop / Continue -->
+        <!-- SECTION 2: RÉTRO — Mad / Sad / Glad -->
         <!-- ═══════════════════════════════════════════ -->
         <section id="retro" class="section">
             <div class="card">
-                <h2>🚦 Start / Stop / Continue</h2>
-                <p class="hint">Identifiez ce qu'on devrait commencer à faire, arrêter de faire et continuer de faire.
-                    Écrivez directement sur les post-its. Simple et efficace !</p>
+                <h2>🎭 Mad / Sad / Glad</h2>
+                <p class="hint">Partagez ce qui vous a mis en colère (Mad), ce qui vous a déçu ou attristé (Sad), et ce
+                    qui vous a fait plaisir ou rendu fier (Glad) durant ce sprint. Écrivez directement sur les
+                    post-its.</p>
 
                 <div class="timer-bar">
                     <span class="timer-display" id="retro-timer">07:00</span>
@@ -453,20 +454,9 @@
                 </div>
 
                 <div class="postit-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
-                    <!-- START -->
+                    <!-- MAD -->
                     <div class="postit-col">
-                        <div class="postit-col-title">🟢 Start — Ce qu'on devrait commencer</div>
-                        <div class="postit-stack">
-                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
-                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
-                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
-                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
-                        </div>
-                    </div>
-
-                    <!-- STOP -->
-                    <div class="postit-col">
-                        <div class="postit-col-title">🔴 Stop — Ce qu'on devrait arrêter</div>
+                        <div class="postit-col-title">😡 Mad — Ce qui vous a frustré / mis en colère</div>
                         <div class="postit-stack">
                             <div class="postit stop-color" contenteditable="true" spellcheck="false"></div>
                             <div class="postit stop-color" contenteditable="true" spellcheck="false"></div>
@@ -475,14 +465,25 @@
                         </div>
                     </div>
 
-                    <!-- CONTINUE -->
+                    <!-- SAD -->
                     <div class="postit-col">
-                        <div class="postit-col-title">🔵 Continue — Ce qu'on devrait continuer</div>
+                        <div class="postit-col-title">😢 Sad — Ce qui vous a déçu / attristé</div>
                         <div class="postit-stack">
                             <div class="postit continue-color" contenteditable="true" spellcheck="false"></div>
                             <div class="postit continue-color" contenteditable="true" spellcheck="false"></div>
                             <div class="postit continue-color" contenteditable="true" spellcheck="false"></div>
                             <div class="postit continue-color" contenteditable="true" spellcheck="false"></div>
+                        </div>
+                    </div>
+
+                    <!-- GLAD -->
+                    <div class="postit-col">
+                        <div class="postit-col-title">😊 Glad — Ce qui vous a fait plaisir / rendu fier</div>
+                        <div class="postit-stack">
+                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
+                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
+                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
+                            <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
                         </div>
                     </div>
                 </div>
@@ -557,7 +558,7 @@
         };
         const hasFirebaseConfig = !Object.values(firebaseConfig).some(v => String(v).includes('REPLACE_ME'));
         const params = new URLSearchParams(window.location.search);
-        const boardId = (params.get('board') || 'sprint-6').trim().replace(/[^a-zA-Z0-9_-]/g, '_');
+        const boardId = (params.get('board') || 'sprint-7').trim().replace(/[^a-zA-Z0-9_-]/g, '_');
         const syncStatusEl = document.getElementById('sync-status');
         function setSyncStatus(text, color) {
             if (!syncStatusEl) return;
@@ -751,7 +752,7 @@
                 if (sectionId === 'actions') {
                     defaultText = 'Décrire l\'action';
                 } else {
-                    defaultText = '👤 Nom — ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi en 1 phrase';
+                    defaultText = '👤 Nom — Ma météo : ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?';
                 }
             } else if (colorClass === 'start-color' || colorClass === 'stop-color' || colorClass === 'continue-color') {
                 defaultText = '';
@@ -792,7 +793,7 @@
                     defaultText = 'Décrire l\'action';
                 } else {
                     // Section Icebreaker et autres (section 1)
-                    defaultText = '👤 Nom — Mon mot : ... — Pourquoi en 1 phrase';
+                    defaultText = '👤 Nom — Ma météo : ☀️/🌤️/⛅/🌧️/⛈️ — Pourquoi ?';
                 }
             }
             
@@ -858,10 +859,10 @@
                     // Si la stack est vide, vérifier le titre
                     if (existingPostits.length === 0) {
                         // Chercher par le titre de la colonne
-                        if (colorClass === 'start-color' && col.textContent.includes('Start')) return col;
-                        if (colorClass === 'stop-color' && col.textContent.includes('Stop')) return col;
-                        if (colorClass === 'continue-color' && col.textContent.includes('Continue')) return col;
-                        if (colorClass === 'idea-color' && (col.textContent.includes('mot de chacun') || col.textContent.includes('Action') || col.textContent.includes('Mot'))) return col;
+                        if (colorClass === 'start-color' && col.textContent.includes('Glad')) return col;
+                        if (colorClass === 'stop-color' && col.textContent.includes('Mad')) return col;
+                        if (colorClass === 'continue-color' && col.textContent.includes('Sad')) return col;
+                        if (colorClass === 'idea-color' && (col.textContent.includes('météo de chacun') || col.textContent.includes('Action') || col.textContent.includes('Mot'))) return col;
                     }
                 }
             }
