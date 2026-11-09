@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rétro Sprint — Voilier</title>
+    <title>Rétro Sprint 9 — 4L</title>
     <style>
         :root {
             --bg: #0f1220;
@@ -364,21 +364,21 @@
 
         <nav class="toolbar" id="toolbar">
             <button class="active" data-target="ice">1. 💬 Icebreaker</button>
-            <button data-target="retro">2. ⛵ Voilier</button>
+            <button data-target="retro">2. 4️⃣ Rétro 4L</button>
             <button data-target="actions">3. 🎯 Actions</button>
         </nav>
 
 
 
         <!-- ═══════════════════════════════════════════ -->
-        <!-- SECTION 1: ICEBREAKER — Code HTTP du sprint -->
+        <!-- SECTION 1: ICEBREAKER — La commande Git du sprint -->
         <!-- ═══════════════════════════════════════════ -->
         <section id="ice" class="section active">
             <div class="card">
-                <h2>💬 Icebreaker — Le code HTTP du sprint</h2>
-                <p class="hint">Si votre sprint était une réponse HTTP, ce serait laquelle ? Choisissez votre code,
-                    puis expliquez-le en une phrase sur votre post-it. À la fin du tour de table, cliquez sur le code
-                    qui représente le mieux l'équipe.</p>
+                <h2>💬 Icebreaker — La commande Git du sprint</h2>
+                <p class="hint">Si votre sprint était une commande Git, ce serait laquelle ? Choisissez votre commande,
+                    puis écrivez le « message de commit » de votre sprint en une phrase sur votre post-it. À la fin du
+                    tour de table, cliquez sur la commande qui représente le mieux l'équipe.</p>
 
                 <div class="timer-bar">
                     <span class="timer-display" id="ice-timer">05:00</span>
@@ -390,51 +390,55 @@
                 <div
                     style="display:grid; grid-template-columns: repeat(auto-fit, minmax(110px,1fr)); gap:12px; margin:16px 0;">
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">✅</div>
-                        <div class="dice-label"><strong>200 OK</strong><br>Tout roule</div>
+                        <div class="dice-emoji">🚀</div>
+                        <div class="dice-label"><strong>git push</strong><br>Livré, propre et à l'heure</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">↪️</div>
-                        <div class="dice-label"><strong>301 Moved</strong><br>Les priorités ont changé</div>
+                        <div class="dice-emoji">🔀</div>
+                        <div class="dice-label"><strong>git merge</strong><br>Beaucoup de collaboration</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">🔍</div>
-                        <div class="dice-label"><strong>404 Not Found</strong><br>Je cherche encore l'info</div>
+                        <div class="dice-emoji">⚔️</div>
+                        <div class="dice-label"><strong>CONFLICT</strong><br>Ça a frotté quelque part</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">🫖</div>
-                        <div class="dice-label"><strong>418 I'm a teapot</strong><br>Sprint un peu surréaliste</div>
+                        <div class="dice-emoji">📦</div>
+                        <div class="dice-label"><strong>git stash</strong><br>Plein de sujets mis de côté</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">🚦</div>
-                        <div class="dice-label"><strong>429 Too Many Requests</strong><br>Trop de sollicitations</div>
+                        <div class="dice-emoji">🍒</div>
+                        <div class="dice-label"><strong>git cherry-pick</strong><br>J'ai pioché à droite à gauche</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">💥</div>
-                        <div class="dice-label"><strong>500 Internal Error</strong><br>Sprint compliqué</div>
+                        <div class="dice-emoji">🧶</div>
+                        <div class="dice-label"><strong>git rebase -i</strong><br>J'ai tout réorganisé</div>
                     </div>
                     <div class="dice" onclick="selectDice(this)">
-                        <div class="dice-emoji">🛠️</div>
-                        <div class="dice-label"><strong>503 Unavailable</strong><br>Besoin de souffler</div>
+                        <div class="dice-emoji">⏪</div>
+                        <div class="dice-label"><strong>git revert</strong><br>On a dû revenir en arrière</div>
+                    </div>
+                    <div class="dice" onclick="selectDice(this)">
+                        <div class="dice-emoji">💣</div>
+                        <div class="dice-label"><strong>git push --force</strong><br>Sprint à haut risque</div>
                     </div>
                 </div>
 
-                <h3>Tour de table — Le code de chacun</h3>
+                <h3>Tour de table — Le git log de l'équipe</h3>
                 <div class="postit-grid" style="grid-template-columns: 1fr;">
                     <div class="postit-col" data-col="ice" style="min-height: auto;">
                         <div class="postit-stack">
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — Mon code : 200/301/404/418/429/500/503 — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — Ma commande : git … — Mon message de commit : « … »</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — Mon code : 200/301/404/418/429/500/503 — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — Ma commande : git … — Mon message de commit : « … »</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — Mon code : 200/301/404/418/429/500/503 — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — Ma commande : git … — Mon message de commit : « … »</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — Mon code : 200/301/404/418/429/500/503 — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — Ma commande : git … — Mon message de commit : « … »</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — Mon code : 200/301/404/418/429/500/503 — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — Ma commande : git … — Mon message de commit : « … »</div>
                             <div class="postit idea-color" contenteditable="true" spellcheck="false"
-                                style="min-height: 40px;">👤 Nom — Mon code : 200/301/404/418/429/500/503 — Pourquoi ?</div>
+                                style="min-height: 40px;">👤 Nom — Ma commande : git … — Mon message de commit : « … »</div>
                         </div>
                     </div>
                 </div>
@@ -442,14 +446,13 @@
         </section>
 
         <!-- ═══════════════════════════════════════════ -->
-        <!-- SECTION 2: RÉTRO — Voilier (Sailboat) -->
+        <!-- SECTION 2: RÉTRO — 4L (Liked / Learned / Lacked / Longed for) -->
         <!-- ═══════════════════════════════════════════ -->
         <section id="retro" class="section">
             <div class="card">
-                <h2>⛵ Rétro Voilier — Sailboat</h2>
-                <p class="hint">Notre sprint est un voilier qui avance vers une île. 💨 Le vent nous pousse, ⚓ les ancres
-                    nous freinent, 🪨 les rochers sont des risques devant nous, et 🏝️ l'île est l'objectif que l'on veut
-                    atteindre. Écrivez directement sur les post-its.</p>
+                <h2>4️⃣ Rétro — 4L</h2>
+                <p class="hint">😍 Liked : ce que j'ai aimé. 💡 Learned : ce que j'ai appris. 🕳️ Lacked : ce qui a
+                    manqué. 🌟 Longed for : ce que j'aurais aimé avoir. Écrivez directement sur les post-its.</p>
 
                 <div class="timer-bar">
                     <span class="timer-display" id="retro-timer">08:00</span>
@@ -459,9 +462,9 @@
                 </div>
 
                 <div class="postit-grid" style="grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));">
-                    <!-- VENT -->
-                    <div class="postit-col" data-col="wind">
-                        <div class="postit-col-title">💨 Vent — Ce qui nous fait avancer</div>
+                    <!-- LIKED -->
+                    <div class="postit-col" data-col="liked">
+                        <div class="postit-col-title">😍 Liked — Ce que j'ai aimé</div>
                         <div class="postit-stack">
                             <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
                             <div class="postit start-color" contenteditable="true" spellcheck="false"></div>
@@ -470,9 +473,9 @@
                         </div>
                     </div>
 
-                    <!-- ANCRES -->
-                    <div class="postit-col" data-col="anchors">
-                        <div class="postit-col-title">⚓ Ancres — Ce qui nous freine</div>
+                    <!-- LEARNED -->
+                    <div class="postit-col" data-col="learned">
+                        <div class="postit-col-title">💡 Learned — Ce que j'ai appris</div>
                         <div class="postit-stack">
                             <div class="postit continue-color" contenteditable="true" spellcheck="false"></div>
                             <div class="postit continue-color" contenteditable="true" spellcheck="false"></div>
@@ -481,9 +484,9 @@
                         </div>
                     </div>
 
-                    <!-- ROCHERS -->
-                    <div class="postit-col" data-col="rocks">
-                        <div class="postit-col-title">🪨 Rochers — Les risques à venir</div>
+                    <!-- LACKED -->
+                    <div class="postit-col" data-col="lacked">
+                        <div class="postit-col-title">🕳️ Lacked — Ce qui a manqué</div>
                         <div class="postit-stack">
                             <div class="postit stop-color" contenteditable="true" spellcheck="false"></div>
                             <div class="postit stop-color" contenteditable="true" spellcheck="false"></div>
@@ -492,9 +495,9 @@
                         </div>
                     </div>
 
-                    <!-- ÎLE -->
-                    <div class="postit-col" data-col="island">
-                        <div class="postit-col-title">🏝️ Île — Notre objectif / ce qu'on veut atteindre</div>
+                    <!-- LONGED FOR -->
+                    <div class="postit-col" data-col="longed">
+                        <div class="postit-col-title">🌟 Longed for — Ce que j'aurais aimé</div>
                         <div class="postit-stack">
                             <div class="postit rock-color" contenteditable="true" spellcheck="false"></div>
                             <div class="postit rock-color" contenteditable="true" spellcheck="false"></div>
@@ -574,7 +577,7 @@
         };
         const hasFirebaseConfig = !Object.values(firebaseConfig).some(v => String(v).includes('REPLACE_ME'));
         const params = new URLSearchParams(window.location.search);
-        const boardId = (params.get('board') || 'sprint-8').trim().replace(/[^a-zA-Z0-9_-]/g, '_');
+        const boardId = (params.get('board') || 'sprint-9').trim().replace(/[^a-zA-Z0-9_-]/g, '_');
         const syncStatusEl = document.getElementById('sync-status');
         function setSyncStatus(text, color) {
             if (!syncStatusEl) return;
@@ -768,7 +771,7 @@
                 if (sectionId === 'actions') {
                     defaultText = 'Décrire l\'action';
                 } else {
-                    defaultText = '👤 Nom — Mon code : 200/301/404/418/429/500/503 — Pourquoi ?';
+                    defaultText = '👤 Nom — Ma commande : git … — Mon message de commit : « … »';
                 }
             } else if (colorClass === 'start-color' || colorClass === 'stop-color' || colorClass === 'continue-color' || colorClass === 'rock-color') {
                 defaultText = '';
@@ -810,7 +813,7 @@
                     defaultText = 'Décrire l\'action';
                 } else {
                     // Section Icebreaker et autres (section 1)
-                    defaultText = '👤 Nom — Mon code : 200/301/404/418/429/500/503 — Pourquoi ?';
+                    defaultText = '👤 Nom — Ma commande : git … — Mon message de commit : « … »';
                 }
             }
             
